@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Catálogo</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <h1 th:text="${titulo}">Catálogo de Instrumentos Psicológicos</h1>
+    <p>Diseño responsivo con Spring Boot, Thymeleaf, CSS y JavaScript</p>
+</header>
+
+<main class="contenedor">
+    <section class="barra-superior">
+        <input type="text" id="buscador" placeholder="Buscar instrumento...">
+        <button id="btnMostrar">Mostrar/Ocultar descripciones</button>
+    </section>
+
+    <section class="catalogo">
+        <article class="tarjeta" th:each="instrumento : ${instrumentos}">
+            <img th:src="@{${instrumento.imagen}}" th:alt="${instrumento.nombre}">
+            <h2 th:text="${instrumento.nombre}">Nombre</h2>
+            <span class="categoria" th:text="${instrumento.categoria}">Categoría</span>
+            <p class="descripcion" th:text="${instrumento.descripcion}">Descripción</p>
+            <button class="btn-detalle">Ver más</button>
+        </article>
+    </section>
+</main>
+
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>
